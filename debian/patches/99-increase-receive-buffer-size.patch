@@ -1,0 +1,18 @@
+Description: Fix "Message truncated" issue with many VF's
+Author: Phil Sutter <phil@nwl.cc>
+Origin: https://git.kernel.org/pub/scm/linux/kernel/git/shemminger/iproute2.git/commit/?id=72b365e8e
+Applied-Upstream: 4.5.0
+Bug-Ubuntu: https://bugs.launchpad.net/bugs/1720126
+Last-Update: 2017-10-19
+
+--- iproute2-3.12.0.orig/lib/libnetlink.c
++++ iproute2-3.12.0/lib/libnetlink.c
+@@ -193,7 +193,7 @@ int rtnl_dump_filter_l(struct rtnl_handl
+ 		.msg_iov = &iov,
+ 		.msg_iovlen = 1,
+ 	};
+-	char buf[16384];
++	char buf[32768];
+ 	int dump_intr = 0;
+ 
+ 	iov.iov_base = buf;

@@ -1,0 +1,20 @@
+Description: ipmaddr: Avoid accessing uninitialized data
+ Looks like this can only happen if /proc/net/igmp is malformed, but
+ better be sure.
+Author: Phil Sutter <phil@nwl.cc>
+Origin: upstream, https://git.kernel.org/pub/scm/linux/kernel/git/shemminger/iproute2.git/commit/?id=b48a1161f5f9b6a0cda399a224bbbf72eba4a5c6
+Bug-Ubuntu: https://launchpad.net/bugs/1732032
+Last-Update: 2017-11-29
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/ip/ipmaddr.c
++++ b/ip/ipmaddr.c
+@@ -140,7 +140,7 @@
+ 
+ 	while (fgets(buf, sizeof(buf), fp)) {
+ 		struct ma_info *ma;
+-		size_t len;
++		size_t len = 0;
+ 
+ 		if (buf[0] != '\t') {
+ 			sscanf(buf, "%d%s", &m.index, m.name);

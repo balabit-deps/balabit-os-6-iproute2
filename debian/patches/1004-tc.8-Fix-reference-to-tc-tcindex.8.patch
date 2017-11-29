@@ -1,0 +1,30 @@
+From b08b5ff128874f94a1bc9dd8e178fa0e57c11c61 Mon Sep 17 00:00:00 2001
+From: Phil Sutter <phil@nwl.cc>
+Date: Thu, 10 Dec 2015 13:24:51 +0100
+Subject: [PATCH] tc.8: Fix reference to tc-tcindex.8
+
+Just a typo there, it's spelled correctly in SEE ALSO section..
+
+Signed-off-by: Phil Sutter <phil@nwl.cc>
+Origin: upstream, https://git.kernel.org/cgit/linux/kernel/git/shemminger/iproute2.git/diff/?id=b08b5ff128874f94a1bc9dd8e178fa0e57c11c61
+Bug-Ubuntu: https://bugs.launchpad.net/ubuntu/+source/iproute2/+bug/1668813
+---
+ man/man8/tc.8 | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/man/man8/tc.8 b/man/man8/tc.8
+index 6275c4b..4e99dca 100644
+--- a/man/man8/tc.8
++++ b/man/man8/tc.8
+@@ -181,7 +181,7 @@ Match Resource Reservation Protocol (RSVP) packets.
+ .TP
+ tcindex
+ Filter packets based on traffic control index. See
+-.BR tc-index (8).
++.BR tc-tcindex (8).
+ .TP
+ u32
+ Generic filtering on arbitrary packet data, assisted by syntax to abstract common operations. See
+-- 
+2.10.2
+

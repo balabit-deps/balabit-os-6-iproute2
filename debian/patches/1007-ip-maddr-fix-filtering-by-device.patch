@@ -1,0 +1,42 @@
+Description: ip maddr: fix filtering by device
+ Commit 530903dd9003 ("ip: fix igmp parsing when iface is long") uses
+ variable len to keep trailing colon from interface name comparison.  This
+ variable is local to loop body but we set it in one pass and use it in
+ following one(s) so that we are actually using (pseudo)random length for
+ comparison. This became apparent since commit b48a1161f5f9 ("ipmaddr: Avoid
+ accessing uninitialized data") always initializes len to zero so that the
+ name comparison is always true. As a result, "ip maddr show dev eth0" shows
+ IPv4 multicast addresses for all interfaces.
+ .
+ Instead of keeping the length, let's simply replace the trailing colon with
+ a null byte. The bonus is that we get correct interface name in ma.name.
+Author: Michal Kubecek <mkubecek@suse.cz>
+Origin: upstream, https://git.kernel.org/pub/scm/linux/kernel/git/shemminger/iproute2.git/commit/?id=21503ed2af233ffe795926f6641ac84ec1b15bf9
+Bug-Ubuntu: https://launchpad.net/bugs/1732032
+Last-Update: 2017-11-29
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/ip/ipmaddr.c
++++ b/ip/ipmaddr.c
+@@ -140,17 +140,18 @@
+ 
+ 	while (fgets(buf, sizeof(buf), fp)) {
+ 		struct ma_info *ma;
+-		size_t len = 0;
+ 
+ 		if (buf[0] != '\t') {
++			size_t len;
++
+ 			sscanf(buf, "%d%s", &m.index, m.name);
+ 			len = strlen(m.name);
+ 			if (m.name[len - 1] == ':')
+-				len--;
++				m.name[len - 1] = '\0';
+ 			continue;
+ 		}
+ 
+-		if (filter.dev && strncmp(filter.dev, m.name, len))
++		if (filter.dev && strcmp(filter.dev, m.name))
+ 			continue;
+ 
+ 		sscanf(buf, "%08x%d", (__u32*)&m.addr.data, &m.users);

@@ -1,3 +1,31 @@
+iproute2 (4.3.0-1ubuntu3.16.04.3) xenial; urgency=medium
+
+  * Fix ip maddr show (LP: #1732032):
+    - d/p/1005-ip-maddr-fix-igmp-parsing.patch: fix igmp parsing when iface is
+      long
+    - d/p/1006-ip-maddr-avoid-uninitialized-data.patch: avoid accessing
+      uninitialized data
+    - d/p/1007-ip-maddr-fix-filtering-by-device.patch: fix filtering
+      by device
+
+ -- Andreas Hasenack <andreas@canonical.com>  Wed, 29 Nov 2017 15:04:40 -0200
+
+iproute2 (4.3.0-1ubuntu3.16.04.2) xenial; urgency=medium
+
+  * debian/patches/99-increase-receive-buffer-size.patch: Fix "Message
+    truncated" issue with many VF's.  Thanks to Phil Sutter
+    <phil@nwl.cc>.  Closes LP: #1720126.
+
+ -- Monique van den Berg <monique.vandenberg@netronome.com>  Tue, 17 Oct 2017 11:33:13 +0200
+
+iproute2 (4.3.0-1ubuntu3.16.04.1) xenial; urgency=medium
+
+  * debian/patches/1004-tc.8-Fix-reference-to-tc-tcindex.8.patch:
+    [PATCH] tc.8: Fix reference to tc-tcindex.8.  Thanks to Phil Sutter
+    <phil@nwl.cc>.  LP: #1668813
+
+ -- Jon Grimm <jon.grimm@canonical.com>  Fri, 10 Mar 2017 16:59:26 -0600
+
 iproute2 (4.3.0-1ubuntu3) xenial; urgency=medium
 
   * Add d/p/1003-fix-variable-in-libnetlink.patch (LP: #1522371), fix a variable name
