@@ -9,3 +9,6 @@
 1005-ip-maddr-fix-igmp-parsing.patch
 1006-ip-maddr-avoid-uninitialized-data.patch
 1007-ip-maddr-fix-filtering-by-device.patch
+1008-vf_trust_dddf1b44126e.patch
+1009-vf_trust_b6d77d9ee312.patch
+1010-vf_trust_fe9322781e63.patch

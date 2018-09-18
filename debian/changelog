@@ -1,3 +1,12 @@
+iproute2 (4.3.0-1ubuntu3.16.04.4) xenial; urgency=medium
+
+  * Add support for VF Trust (LP: #1800877)
+    - d/p/1008-vf_trust_dddf1b44126e.patch: netlink attribute
+    - d/p/1009-vf_trust_b6d77d9ee312.patch: set it for kernel
+    - d/p/1010-vf_trust_fe9322781e63.patch: print it for user
+
+ -- Mauricio Faria de Oliveira <mfo@canonical.com>  Tue, 18 Sep 2018 12:21:44 -0300
+
 iproute2 (4.3.0-1ubuntu3.16.04.3) xenial; urgency=medium
 
   * Fix ip maddr show (LP: #1732032):

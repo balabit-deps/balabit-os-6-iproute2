@@ -16,9 +16,11 @@ Bug-Ubuntu: https://launchpad.net/bugs/1732032
 Last-Update: 2017-11-29
 ---
 This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
---- a/ip/ipmaddr.c
-+++ b/ip/ipmaddr.c
-@@ -140,17 +140,18 @@
+Index: iproute2-4.3.0/ip/ipmaddr.c
+===================================================================
+--- iproute2-4.3.0.orig/ip/ipmaddr.c
++++ iproute2-4.3.0/ip/ipmaddr.c
+@@ -140,17 +140,18 @@ static void read_igmp(struct ma_info **r
  
  	while (fgets(buf, sizeof(buf), fp)) {
  		struct ma_info *ma;
