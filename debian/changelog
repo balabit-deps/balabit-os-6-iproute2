@@ -1,3 +1,10 @@
+iproute2 (4.3.0-1ubuntu3.16.04.5) xenial; urgency=medium
+
+  * sched: Match-all classifier is missing in xenial (LP: #1642514)
+    - d/p/1011-tc-Add-support-for-the-matchall-traffic-classifier.patch
+
+ -- Stefan Bader <stefan.bader@canonical.com>  Thu, 04 Apr 2019 15:47:07 +0200
+
 iproute2 (4.3.0-1ubuntu3.16.04.4) xenial; urgency=medium
 
   * Add support for VF Trust (LP: #1800877)
